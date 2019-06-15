@@ -3,45 +3,53 @@ public class TennisGame {
     public static final String SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_0_POINT = "Love-All";
     public static final String SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_1_POINT = "Fifteen-All";
     public static final String SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_2_POINT = "Thirty-All";
-    public static final String SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_3_POINT = "Forty-All";
-    public static final String SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_ATLEAST_3_POINT1 = SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_3_POINT;
+    public static final String SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_ATLEAST_3_POINT = "Deuce";
+    public static final String POINT_0_NAME = "Love";
+    public static final String POINT_1_NAME = "Fifteen";
+    public static final String POINT_2_NAME = "Thirty";
+    public static final String POINT_3_NAME = "Forty";
 
     public static String getScore(String firstPlayer, String secondPlayer, int firstPlayerPoint, int secondPlayerPoint) {
         String finalScore = "";
         if (isTwoPlayersHasSamePoint(firstPlayerPoint, secondPlayerPoint)) {
-            int point = firstPlayerPoint;
-            finalScore = getScoreWhenTwoPlayersHasTheSamePoint(point);
+            finalScore = getScoreWhenTwoPlayersHasTheSamePoint(firstPlayerPoint);
 
         } else if (isOneOfTwoPlayersHasAtleast4Points(firstPlayerPoint, secondPlayerPoint)) {
-            int differencePoint = firstPlayerPoint - secondPlayerPoint;
-            if (differencePoint == 1) finalScore = "Advantage player1";
-            else if (differencePoint == -1) finalScore = "Advantage player2";
-            else if (differencePoint >= 2) finalScore = "Win for player1";
-            else if (differencePoint <= -2) finalScore = "Win for player2";
+            finalScore = getScoreWhenOneOfTwoPlayersHasAtleast4Points(firstPlayerPoint, secondPlayerPoint);
         } else {
-            for (int i = 1; i < 3; i++) {
-                int tempPoint;
-                if (i == 1) tempPoint = firstPlayerPoint;
-                else {
-                    finalScore += "-";
-                    tempPoint = secondPlayerPoint;
-                }
-                switch (tempPoint) {
+            int[] playerPointArray = {firstPlayerPoint, secondPlayerPoint};
+            for (int point :
+                    playerPointArray) {
+                if (point == secondPlayerPoint) finalScore += "-";
+                switch (point) {
                     case 0:
-                        finalScore += "Love";
+                        finalScore += POINT_0_NAME;
                         break;
                     case 1:
-                        finalScore += "Fifteen";
+                        finalScore += POINT_1_NAME;
                         break;
                     case 2:
-                        finalScore += "Thirty";
+                        finalScore += POINT_2_NAME;
                         break;
                     case 3:
-                        finalScore += "Forty";
+                        finalScore += POINT_3_NAME;
                         break;
                 }
+
             }
+
+
         }
+        return finalScore;
+    }
+
+    private static String getScoreWhenOneOfTwoPlayersHasAtleast4Points(int firstPlayerPoint, int secondPlayerPoint) {
+        String finalScore = "";
+        int differencePoint = firstPlayerPoint - secondPlayerPoint;
+        if (differencePoint == 1) finalScore = "Advantage player1";
+        else if (differencePoint == -1) finalScore = "Advantage player2";
+        else if (differencePoint >= 2) finalScore = "Win for player1";
+        else if (differencePoint <= -2) finalScore = "Win for player2";
         return finalScore;
     }
 
@@ -62,7 +70,7 @@ public class TennisGame {
                 score = SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_2_POINT;
                 break;
             default:
-                score = SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_ATLEAST_3_POINT1;
+                score = SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_ATLEAST_3_POINT;
 
 
         }
