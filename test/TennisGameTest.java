@@ -22,7 +22,7 @@ public class TennisGameTest {
     }
 
     @Parameterized.Parameters
-    public static Collection<Object[]> getAllScores() {
+    public static Collection<Object[]> getAllResults() {
         return Arrays.asList(new Object[][] {
                 { 0, 0, "Love-All" },
                 { 1, 1, "Fifteen-All" },
@@ -66,7 +66,7 @@ public class TennisGameTest {
     }
 
     @Test
-    public void checkAllScores() {
+    public void checkAllResults() {
         int highestScore = Math.max(this.player1Score, this.player2Score);
         int m_score1 = 0;
         int m_score2 = 0;
@@ -76,6 +76,6 @@ public class TennisGameTest {
             if (i < this.player2Score)
                 m_score2 += 1;
         }
-        assertEquals(this.expectedScore, TennisGame.getScore("John", "Bill", m_score1, m_score2));
+        assertEquals(this.expectedScore, TennisGame.getResult("John", "Bill", m_score1, m_score2));
     }
 }
