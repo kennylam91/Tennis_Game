@@ -8,9 +8,15 @@ public class TennisGame {
     public static final String POINT_1_NAME = "Fifteen";
     public static final String POINT_2_NAME = "Thirty";
     public static final String POINT_3_NAME = "Forty";
+    public static final int ZERO_POINT = 0;
+    public static final int ONE_POINT = 1;
+    public static final int TWO_POINT = 2;
+    public static final int THREE_POINT = 3;
 
     public static String getScore(String firstPlayer, String secondPlayer, int firstPlayerPoint, int secondPlayerPoint) {
+
         String finalScore = "";
+
         if (isTwoPlayersHasSamePoint(firstPlayerPoint, secondPlayerPoint)) {
             finalScore = getScoreWhenTwoPlayersHasTheSamePoint(firstPlayerPoint);
 
@@ -23,16 +29,16 @@ public class TennisGame {
                     playerPointArray) {
                 if (point == secondPlayerPoint) finalScore += "-";
                 switch (point) {
-                    case 0:
+                    case ZERO_POINT:
                         finalScore += POINT_0_NAME;
                         break;
-                    case 1:
+                    case ONE_POINT:
                         finalScore += POINT_1_NAME;
                         break;
-                    case 2:
+                    case TWO_POINT:
                         finalScore += POINT_2_NAME;
                         break;
-                    case 3:
+                    case THREE_POINT:
                         finalScore += POINT_3_NAME;
                         break;
                 }
@@ -42,7 +48,9 @@ public class TennisGame {
     }
 
     private static String getScoreWhenOneOfTwoPlayersHasAtleast4Points(int firstPlayerPoint, int secondPlayerPoint) {
+
         String finalScore = "";
+
         int differencePoint = firstPlayerPoint - secondPlayerPoint;
         if (differencePoint == 1) finalScore = "Advantage player1";
         else if (differencePoint == -1) finalScore = "Advantage player2";
@@ -56,15 +64,17 @@ public class TennisGame {
     }
 
     private static String getScoreWhenTwoPlayersHasTheSamePoint(int samePoint) {
+
         String finalScore="";
+
         switch (samePoint) {
-            case 0:
+            case ZERO_POINT:
                 finalScore = SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_0_POINT;
                 break;
-            case 1:
+            case ONE_POINT:
                 finalScore = SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_1_POINT;
                 break;
-            case 2:
+            case TWO_POINT:
                 finalScore = SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_2_POINT;
                 break;
             default:
