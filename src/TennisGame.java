@@ -6,43 +6,43 @@ public class TennisGame {
     public static final String SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_3_POINT = "Forty-All";
     public static final String SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_ATLEAST_3_POINT1 = SCORE_WHEN_TWO_PLAYERS_HAS_THE_SAME_3_POINT;
 
-    public static String getScore(String player1, String player2, int player1Point, int player2Point) {
-        String score = "";
-        int tempPoint = 0;
-        if (isTwoPlayersHasSamePoint(player1Point, player2Point)) {
-            int point = player1Point;
-            score = getScoreWhenTwoPlayersHasTheSamePoint(point);
+    public static String getScore(String firstPlayer, String secondPlayer, int firstPlayerPoint, int secondPlayerPoint) {
+        String finalScore = "";
+        if (isTwoPlayersHasSamePoint(firstPlayerPoint, secondPlayerPoint)) {
+            int point = firstPlayerPoint;
+            finalScore = getScoreWhenTwoPlayersHasTheSamePoint(point);
 
-        } else if (isOneOfTwoPlayersHasAtleast4Points(player1Point, player2Point)) {
-            int differencePoint = player1Point - player2Point;
-            if (differencePoint == 1) score = "Advantage player1";
-            else if (differencePoint == -1) score = "Advantage player2";
-            else if (differencePoint >= 2) score = "Win for player1";
-            else if (differencePoint <= -2) score = "Win for player2";
+        } else if (isOneOfTwoPlayersHasAtleast4Points(firstPlayerPoint, secondPlayerPoint)) {
+            int differencePoint = firstPlayerPoint - secondPlayerPoint;
+            if (differencePoint == 1) finalScore = "Advantage player1";
+            else if (differencePoint == -1) finalScore = "Advantage player2";
+            else if (differencePoint >= 2) finalScore = "Win for player1";
+            else if (differencePoint <= -2) finalScore = "Win for player2";
         } else {
             for (int i = 1; i < 3; i++) {
-                if (i == 1) tempPoint = player1Point;
+                int tempPoint;
+                if (i == 1) tempPoint = firstPlayerPoint;
                 else {
-                    score += "-";
-                    tempPoint = player2Point;
+                    finalScore += "-";
+                    tempPoint = secondPlayerPoint;
                 }
                 switch (tempPoint) {
                     case 0:
-                        score += "Love";
+                        finalScore += "Love";
                         break;
                     case 1:
-                        score += "Fifteen";
+                        finalScore += "Fifteen";
                         break;
                     case 2:
-                        score += "Thirty";
+                        finalScore += "Thirty";
                         break;
                     case 3:
-                        score += "Forty";
+                        finalScore += "Forty";
                         break;
                 }
             }
         }
-        return score;
+        return finalScore;
     }
 
     private static boolean isOneOfTwoPlayersHasAtleast4Points(int player1Point, int player2Point) {
