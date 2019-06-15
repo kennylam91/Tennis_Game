@@ -26,8 +26,8 @@ public class TennisGame {
             int differencePoint = player1Point - player2Point;
             if (differencePoint == 1) score = "Advantage player1";
             else if (differencePoint == -1) score = "Advantage player2";
-            else if (differencePoint == 2) score = "Win for player1";
-            else if (differencePoint == -2) score = "Win for player2";
+            else if (differencePoint >= 2) score = "Win for player1";
+            else if (differencePoint <= -2) score = "Win for player2";
         } else {
             for (int i = 1; i < 3; i++) {
                 if (i == 1) tempScore = player1Point;
